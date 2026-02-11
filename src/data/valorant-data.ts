@@ -1,3 +1,5 @@
+export type Rank = 'Iron' | 'Bronze' | 'Silver' | 'Gold' | 'Platinum' | 'Diamond' | 'Ascendant' | 'Immortal' | 'Radiant';
+
 export interface Agent {
   id: string;
   name: string;
@@ -7,86 +9,33 @@ export interface Agent {
   strengths: string[];
   abilities: {
     name: string;
-    description: string;
     type: 'Basic' | 'Signature' | 'Ultimate';
   }[];
 }
 
-export interface Map {
+export interface MapData {
   id: string;
   name: string;
   recommendedAgents: string[];
+  characteristics: string[];
 }
 
+export const ranks: Rank[] = ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Ascendant', 'Immortal', 'Radiant'];
+
 export const agents: Agent[] = [
+  // DUELISTS
   {
     id: 'jett',
     name: 'Jett',
     role: 'Duelist',
     difficulty: 4,
-    description: 'Representing her home country of South Korea, Jett\'s agile and evasive fighting style lets her take risks no one else can.',
-    strengths: ['Operator usage', 'Entry fragging', 'High verticality'],
+    description: 'South Korean duelist known for her dash and cloudburst smokes.',
+    strengths: ['Operator plays', 'Entry fragging', 'High mobility'],
     abilities: [
-      { name: 'Cloudburst', description: 'Instantly throw a projectile that expands into a brief vision-blocking cloud.', type: 'Basic' },
-      { name: 'Updraft', description: 'Instantly propel Jett high into the air.', type: 'Basic' },
-      { name: 'Tailwind', description: 'Instantly propel Jett in the direction she is moving.', type: 'Signature' },
-      { name: 'Blade Storm', description: 'Equip a set of highly accurate throwing knives.', type: 'Ultimate' },
-    ]
-  },
-  {
-    id: 'omen',
-    name: 'Omen',
-    role: 'Controller',
-    difficulty: 3,
-    description: 'A phantom of a memory, Omen hunts in the shadows. He renders enemies blind, teleports across the field, then lets paranoia take hold.',
-    strengths: ['Flexible smoking', 'Lurking', 'Mind games'],
-    abilities: [
-      { name: 'Shrouded Step', description: 'Equip a shadow step ability to teleport to a marked location.', type: 'Basic' },
-      { name: 'Paranoia', description: 'Instantly fire a shadow projectile forward, briefly reducing the vision range of all players it touches.', type: 'Basic' },
-      { name: 'Dark Cover', description: 'Equip a shadow orb and see its range indicator. Fire to throw the shadow orb to the marked location.', type: 'Signature' },
-      { name: 'From the Shadows', description: 'Equip a tactical map. Fire to begin teleporting to any location on the map.', type: 'Ultimate' },
-    ]
-  },
-  {
-    id: 'sova',
-    name: 'Sova',
-    role: 'Initiator',
-    difficulty: 4,
-    description: 'Born from the eternal winter of Russia’s tundra, Sova tracks, finds, and eliminates enemies with ruthless efficiency and precision.',
-    strengths: ['Information gathering', 'Post-plant lineups', 'Wall-bang potential'],
-    abilities: [
-      { name: 'Owl Drone', description: 'Equip an owl drone. Fire to deploy and take control of movement of the drone.', type: 'Basic' },
-      { name: 'Shock Bolt', description: 'Equip a bow with a shock bolt. Fire to send the explosive bolt forward, detonating upon collision.', type: 'Basic' },
-      { name: 'Recon Bolt', description: 'Equip a bow with a recon bolt. Fire to send the recon bolt forward, activating upon collision to reveal nearby enemies.', type: 'Signature' },
-      { name: 'Hunter\'s Fury', description: 'Equip a bow with three long-range, wall-piercing energy blasts.', type: 'Ultimate' },
-    ]
-  },
-  {
-    id: 'cypher',
-    name: 'Cypher',
-    role: 'Sentinel',
-    difficulty: 3,
-    description: 'The Moroccan information broker, Cypher is a one-man surveillance network who keeps tabs on the enemy’s every move.',
-    strengths: ['Locking down sites', 'Information gathering', 'Anti-flank'],
-    abilities: [
-      { name: 'Trapwire', description: 'Equip a trapwire. Fire to place a destructible and invisible tripwire at the targeted location.', type: 'Basic' },
-      { name: 'Cyber Cage', description: 'Instantly toss the cyber cage in front of Cypher. Activate to create a zone that blocks vision and slows enemies.', type: 'Basic' },
-      { name: 'Spycam', description: 'Equip a spycam. Fire to place the camera at the targeted location.', type: 'Signature' },
-      { name: 'Neural Theft', description: 'Instantly use on a dead enemy player in your crosshairs to reveal the location of all living enemy players.', type: 'Ultimate' },
-    ]
-  },
-  {
-    id: 'sage',
-    name: 'Sage',
-    role: 'Sentinel',
-    difficulty: 2,
-    description: 'The stronghold of China, Sage creates safety for herself and her team wherever she goes.',
-    strengths: ['Healing', 'Resurrection', 'Slowing pushes'],
-    abilities: [
-      { name: 'Barrier Orb', description: 'Equip a barrier orb. Fire to place a solid wall.', type: 'Basic' },
-      { name: 'Slow Orb', description: 'Equip a slowing orb. Fire to throw the slowing orb forward to detonate upon landing.', type: 'Basic' },
-      { name: 'Healing Orb', description: 'Equip a healing orb. Fire with your crosshairs over a damaged ally to activate a heal-over-time on them.', type: 'Signature' },
-      { name: 'Resurrection', description: 'Equip a resurrection ability. Fire with your crosshairs over a dead ally to begin resurrecting them.', type: 'Ultimate' },
+      { name: 'Cloudburst', type: 'Basic' },
+      { name: 'Updraft', type: 'Basic' },
+      { name: 'Tailwind', type: 'Signature' },
+      { name: 'Blade Storm', type: 'Ultimate' },
     ]
   },
   {
@@ -94,27 +43,27 @@ export const agents: Agent[] = [
     name: 'Phoenix',
     role: 'Duelist',
     difficulty: 2,
-    description: 'Hailing from the U.K., Phoenix\'s star power shines through in his fighting style, igniting the battlefield with flash and flare.',
-    strengths: ['Self-healing', 'Isolating duels', 'Information gathering with Ult'],
+    description: 'British self-sustaining duelist with fire-based abilities.',
+    strengths: ['Self-healing', 'Entry fragging', 'Info gathering'],
     abilities: [
-      { name: 'Blaze', description: 'Equip a flame wall. Fire to create a line of flame that blocks vision and damages players.', type: 'Basic' },
-      { name: 'Curveball', description: 'Equip a flare orb that takes a curving path and detonates shortly after throwing.', type: 'Basic' },
-      { name: 'Hot Hands', description: 'Equip a fireball. Fire to throw a fireball that explodes after a set amount of time or upon hitting the ground.', type: 'Signature' },
-      { name: 'Run it Back', description: 'Instantly place a marker at Phoenix\'s location. Activate to begin a timer where dying or timing out returns you to that spot.', type: 'Ultimate' },
+      { name: 'Blaze', type: 'Basic' },
+      { name: 'Curveball', type: 'Basic' },
+      { name: 'Hot Hands', type: 'Signature' },
+      { name: 'Run it Back', type: 'Ultimate' },
     ]
   },
   {
-    id: 'viper',
-    name: 'Viper',
-    role: 'Controller',
-    difficulty: 4,
-    description: 'The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy\'s vision.',
-    strengths: ['Site denial', 'Post-plant mollies', 'Long-duration smokes'],
+    id: 'raze',
+    name: 'Raze',
+    role: 'Duelist',
+    difficulty: 2,
+    description: 'Brazilian explosive expert with high damage output.',
+    strengths: ['Area denial', 'Satchel mobility', 'High burst damage'],
     abilities: [
-      { name: 'Snake Bite', description: 'Equip a chemical launcher. Fire to launch a canister that shatters upon hitting the floor, creating a lingering chemical zone.', type: 'Basic' },
-      { name: 'Poison Cloud', description: 'Equip a gas emitter. Fire to throw the emitter that perpetually remains throughout the round.', type: 'Basic' },
-      { name: 'Toxic Screen', description: 'Equip a gas emitter launcher. Fire to deploy a long line of gas emitters.', type: 'Signature' },
-      { name: 'Viper\'s Pit', description: 'Equip a chemical sprayer. Fire to spray a chemical cloud in all directions around Viper, creating a large cloud that reduces the vision range and maximum health of players inside of it.', type: 'Ultimate' },
+      { name: 'Blast Pack', type: 'Basic' },
+      { name: 'Paint Shells', type: 'Basic' },
+      { name: 'Boom Bot', type: 'Signature' },
+      { name: 'Showstopper', type: 'Ultimate' },
     ]
   },
   {
@@ -122,78 +71,435 @@ export const agents: Agent[] = [
     name: 'Reyna',
     role: 'Duelist',
     difficulty: 3,
-    description: 'Forged in the heart of Mexico, Reyna dominates single combat, popping off with every kill she scores.',
-    strengths: ['Solo carry potential', 'Sustain', 'High aggression'],
+    description: 'Mexican duelist who thrives on aggressive plays and kills.',
+    strengths: ['Solo carry', 'Sustain', 'Clutch potential'],
     abilities: [
-      { name: 'Leer', description: 'Equip an ethereal destructible eye. Activate to cast the eye a short distance forward. The eye will Nearsight all enemies who look at it.', type: 'Basic' },
-      { name: 'Devour', description: 'Enemies killed by Reyna leave behind Soul Orbs that last 3 seconds. Instantly consume a nearby soul orb, rapidly healing for a short duration.', type: 'Basic' },
-      { name: 'Dismiss', description: 'Instantly consume a nearby soul orb, becoming intangible for a short duration.', type: 'Signature' },
-      { name: 'Empress', description: 'Instantly enter a frenzy, increasing firing, equip and reload speed dramatically. Scoring a kill renews the duration.', type: 'Ultimate' },
+      { name: 'Leer', type: 'Basic' },
+      { name: 'Devour', type: 'Basic' },
+      { name: 'Dismiss', type: 'Signature' },
+      { name: 'Empress', type: 'Ultimate' },
     ]
   },
+  {
+    id: 'yoru',
+    name: 'Yoru',
+    role: 'Duelist',
+    difficulty: 4,
+    description: 'Japanese deceptive duelist with teleportation and fakeouts.',
+    strengths: ['Flanking', 'Mind games', 'Escape tools'],
+    abilities: [
+      { name: 'Blindside', type: 'Basic' },
+      { name: 'Fakeout', type: 'Basic' },
+      { name: 'Gatecrash', type: 'Signature' },
+      { name: 'Dimensional Drift', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'neon',
+    name: 'Neon',
+    role: 'Duelist',
+    difficulty: 3,
+    description: 'Filipino speedster with electric walls and sprint.',
+    strengths: ['Fast entry', 'Wall utility', 'High speed'],
+    abilities: [
+      { name: 'Fast Lane', type: 'Basic' },
+      { name: 'Relay Bolt', type: 'Basic' },
+      { name: 'High Gear', type: 'Signature' },
+      { name: 'Overdrive', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'iso',
+    name: 'Iso',
+    role: 'Duelist',
+    difficulty: 3,
+    description: 'Chinese 1v1 specialist with bulletproof shield.',
+    strengths: ['Duel potential', 'Shield utility', 'Energy drain'],
+    abilities: [
+      { name: 'Double Tap', type: 'Basic' },
+      { name: 'Bulletproof', type: 'Basic' },
+      { name: 'Undercut', type: 'Signature' },
+      { name: 'Kill Contract', type: 'Ultimate' },
+    ]
+  },
+  // CONTROLLERS
   {
     id: 'brimstone',
     name: 'Brimstone',
     role: 'Controller',
     difficulty: 2,
-    description: 'Hailing from the USA, Brimstone\'s orbital arsenal ensures his team always has the advantage.',
-    strengths: ['Quick smoke execution', 'Powerful ultimate', 'Combat stimulation'],
+    description: 'American controller with smokes and stim beacon.',
+    strengths: ['Site execution', 'Team buff', 'Global smokes'],
     abilities: [
-      { name: 'Stim Beacon', description: 'Equip a stim beacon. Fire to toss the stim beacon in front of Brimstone. Upon landing, it creates a field that grants players RapidFire.', type: 'Basic' },
-      { name: 'Incendiary', description: 'Equip an incendiary grenade launcher. Fire to launch a grenade that detonates as it comes to a rest on the floor, creating a lingering fire zone.', type: 'Basic' },
-      { name: 'Sky Smoke', description: 'Equip a tactical map. Fire to set locations where Brimstone’s smoke clouds will land.', type: 'Signature' },
-      { name: 'Orbital Strike', description: 'Equip a tactical map. Fire to launch a lingering orbital strike laser at the selected location.', type: 'Ultimate' },
+      { name: 'Stim Beacon', type: 'Basic' },
+      { name: 'Incendiary', type: 'Basic' },
+      { name: 'Sky Smoke', type: 'Signature' },
+      { name: 'Orbital Strike', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'viper',
+    name: 'Viper',
+    role: 'Controller',
+    difficulty: 4,
+    description: 'American chemist with poison cloud and poison wall.',
+    strengths: ['Site lockdown', 'Post-plant denial', 'Area control'],
+    abilities: [
+      { name: 'Snake Bite', type: 'Basic' },
+      { name: 'Poison Cloud', type: 'Basic' },
+      { name: 'Toxic Screen', type: 'Signature' },
+      { name: 'Viper\'s Pit', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'omen',
+    name: 'Omen',
+    role: 'Controller',
+    difficulty: 3,
+    description: 'Shadow controller with teleportation and paranoia.',
+    strengths: ['One-way smokes', 'Lurking', 'Map control'],
+    abilities: [
+      { name: 'Shrouded Step', type: 'Basic' },
+      { name: 'Paranoia', type: 'Basic' },
+      { name: 'Dark Cover', type: 'Signature' },
+      { name: 'From the Shadows', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'astra',
+    name: 'Astra',
+    role: 'Controller',
+    difficulty: 4,
+    description: 'Ghanaian global controller with star-based utility.',
+    strengths: ['Global utility', 'Gravity well', 'Area denial'],
+    abilities: [
+      { name: 'Nova Pulse', type: 'Basic' },
+      { name: 'Nebula', type: 'Basic' },
+      { name: 'Gravity Well', type: 'Signature' },
+      { name: 'Astral Form', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'harbor',
+    name: 'Harbor',
+    role: 'Controller',
+    difficulty: 2,
+    description: 'Indian controller with water-based walls and cascade.',
+    strengths: ['Wall replacement', 'Team protection', 'Site entry'],
+    abilities: [
+      { name: 'Cove', type: 'Basic' },
+      { name: 'Cascade', type: 'Basic' },
+      { name: 'High Tide', type: 'Signature' },
+      { name: 'Reckoning', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'clove',
+    name: 'Clove',
+    role: 'Controller',
+    difficulty: 3,
+    description: 'Scottish post-death controller with smokes.',
+    strengths: ['Aggressive smokes', 'Self-revive', 'Immortality'],
+    abilities: [
+      { name: 'Ruse', type: 'Basic' },
+      { name: 'Meddle', type: 'Basic' },
+      { name: 'Pick-me-up', type: 'Signature' },
+      { name: 'Not Dead Yet', type: 'Ultimate' },
+    ]
+  },
+  // INITIATORS
+  {
+    id: 'sova',
+    name: 'Sova',
+    role: 'Initiator',
+    difficulty: 4,
+    description: 'Russian recon initiator with drone and shock bolts.',
+    strengths: ['Information gathering', 'Post-plant lineups', 'Wall-bangs'],
+    abilities: [
+      { name: 'Owl Drone', type: 'Basic' },
+      { name: 'Shock Bolt', type: 'Basic' },
+      { name: 'Recon Bolt', type: 'Signature' },
+      { name: 'Hunter\'s Fury', type: 'Ultimate' },
     ]
   },
   {
     id: 'breach',
     name: 'Breach',
     role: 'Initiator',
-    difficulty: 4,
-    description: 'The bionic Swede Breach fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground.',
-    strengths: ['Crowd control', 'Flashing through walls', 'Disrupting defenders'],
+    difficulty: 3,
+    description: 'Swedish initiator with flash and fault line.',
+    strengths: ['Crowd control', 'Flashing through walls', 'Stuns'],
     abilities: [
-      { name: 'Aftershock', description: 'Equip a fusion charge. Fire the charge to set a slow-acting burst through the wall.', type: 'Basic' },
-      { name: 'Flashpoint', description: 'Equip a blinding charge. Fire the charge to set a fast-acting burst through the wall.', type: 'Basic' },
-      { name: 'Fault Line', description: 'Equip a seismic blast. Hold fire to increase the distance. Release to set off a quake, dazing all players in its zone.', type: 'Signature' },
-      { name: 'Rolling Thunder', description: 'Equip a seismic charge. Fire to send a cascading quake through all terrain in a large cone.', type: 'Ultimate' },
+      { name: 'Flashpoint', type: 'Basic' },
+      { name: 'Fault Line', type: 'Basic' },
+      { name: 'Aftershock', type: 'Signature' },
+      { name: 'Rolling Thunder', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'skye',
+    name: 'Skye',
+    role: 'Initiator',
+    difficulty: 3,
+    description: 'Australian initiator with wolf and recon tigers.',
+    strengths: ['Healing', 'Tracking', 'Area clearing'],
+    abilities: [
+      { name: 'Guiding Light', type: 'Basic' },
+      { name: 'Regrowth', type: 'Basic' },
+      { name: 'Trailblazer', type: 'Signature' },
+      { name: 'Seekers', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'kayo',
+    name: 'KAY/O',
+    role: 'Initiator',
+    difficulty: 3,
+    description: 'Robot initiator with suppression and flash.',
+    strengths: ['Ability denial', 'Entry flash', 'Fragile'],
+    abilities: [
+      { name: 'Frag/Fragile', type: 'Basic' },
+      { name: 'Flashdrive', type: 'Basic' },
+      { name: 'Zero/Zero', type: 'Signature' },
+      { name: 'NULL/CMD', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'fade',
+    name: 'Fade',
+    role: 'Initiator',
+    difficulty: 3,
+    description: 'Turkish fear-based initiator with prowlers.',
+    strengths: ['Tracking', 'Nightfall pressure', 'Prowler reveals'],
+    abilities: [
+      { name: 'Prowler', type: 'Basic' },
+      { name: 'Seize', type: 'Basic' },
+      { name: 'Haunting', type: 'Signature' },
+      { name: 'Nightfall', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'gekko',
+    name: 'Gekko',
+    role: 'Initiator',
+    difficulty: 2,
+    description: 'Mexican initiator with wingman and dizzy.',
+    strengths: ['Plant utility', 'Area control', 'Team utility'],
+    abilities: [
+      { name: 'Dizzy', type: 'Basic' },
+      { name: 'Wingman', type: 'Basic' },
+      { name: 'Mosh Pit', type: 'Signature' },
+      { name: 'Thrash', type: 'Ultimate' },
+    ]
+  },
+  // SENTINELS
+  {
+    id: 'sage',
+    name: 'Sage',
+    role: 'Sentinel',
+    difficulty: 2,
+    description: 'Chinese sentinel with healing and wall.',
+    strengths: ['Healing', 'Site defense', 'Resurrection'],
+    abilities: [
+      { name: 'Barrier Orb', type: 'Basic' },
+      { name: 'Slow Orb', type: 'Basic' },
+      { name: 'Healing Orb', type: 'Signature' },
+      { name: 'Resurrection', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'cypher',
+    name: 'Cypher',
+    role: 'Sentinel',
+    difficulty: 3,
+    description: 'Moroccan sentinel with traps and camera.',
+    strengths: ['Lockdown', 'Information', 'Anti-flank'],
+    abilities: [
+      { name: 'Trapwire', type: 'Basic' },
+      { name: 'Cyber Cage', type: 'Basic' },
+      { name: 'Spycam', type: 'Signature' },
+      { name: 'Neural Theft', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'killjoy',
+    name: 'Killjoy',
+    role: 'Sentinel',
+    difficulty: 3,
+    description: 'German sentinel with turret and alarm bot.',
+    strengths: ['Site lockdown', 'Post-plant', 'Flank watch'],
+    abilities: [
+      { name: 'Alarm Bot', type: 'Basic' },
+      { name: 'Nanoswarm', type: 'Basic' },
+      { name: 'Turret', type: 'Signature' },
+      { name: 'Lockdown', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'chamber',
+    name: 'Chamber',
+    role: 'Sentinel',
+    difficulty: 4,
+    description: 'French sentinel with operator and teleport.',
+    strengths: ['Sniper plays', 'Teleport escape', 'Anchor'],
+    abilities: [
+      { name: 'Headhunter', type: 'Basic' },
+      { name: 'Rendezvous', type: 'Basic' },
+      { name: 'Trademark', type: 'Signature' },
+      { name: 'Tour De Force', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'deadlock',
+    name: 'Deadlock',
+    role: 'Sentinel',
+    difficulty: 3,
+    description: 'Norwegian sentinel with grav net and sensor.',
+    strengths: ['Choke denial', 'Pull utility', 'Site anchor'],
+    abilities: [
+      { name: 'GravNet', type: 'Basic' },
+      { name: 'Sonic Sensor', type: 'Basic' },
+      { name: 'Barrier Mesh', type: 'Signature' },
+      { name: 'Annihilation', type: 'Ultimate' },
+    ]
+  },
+  {
+    id: 'vyse',
+    name: 'Vyse',
+    role: 'Sentinel',
+    difficulty: 3,
+    description: 'American sentinel with shear and steel garden.',
+    strengths: ['Wall setups', 'Area denial', 'Flank control'],
+    abilities: [
+      { name: 'Shear', type: 'Basic' },
+      { name: 'Arc Rose', type: 'Basic' },
+      { name: 'Razorvine', type: 'Signature' },
+      { name: 'Steel Garden', type: 'Ultimate' },
     ]
   },
 ];
 
-export const maps: Map[] = [
-  { id: 'ascent', name: 'Ascent', recommendedAgents: ['sova', 'killjoy', 'omen', 'jett', 'kayo'] },
-  { id: 'bind', name: 'Bind', recommendedAgents: ['brimstone', 'viper', 'raze', 'skye', 'fade'] },
-  { id: 'haven', name: 'Haven', recommendedAgents: ['jett', 'sova', 'killjoy', 'omen', 'breach'] },
-  { id: 'split', name: 'Split', recommendedAgents: ['raze', 'viper', 'astra', 'cypher', 'skye'] },
-  { id: 'icebox', name: 'Icebox', recommendedAgents: ['viper', 'sova', 'sage', 'jett', 'killjoy'] },
-  { id: 'breeze', name: 'Breeze', recommendedAgents: ['viper', 'cypher', 'jett', 'sova', 'kayo'] },
-  { id: 'fracture', name: 'Fracture', recommendedAgents: ['brimstone', 'breach', 'raze', 'neon', 'killjoy'] },
-  { id: 'pearl', name: 'Pearl', recommendedAgents: ['astra', 'fade', 'killjoy', 'viper', 'jett'] },
-  { id: 'lotus', name: 'Lotus', recommendedAgents: ['omen', 'killjoy', 'raze', 'viper', 'fade'] },
-  { id: 'sunset', name: 'Sunset', recommendedAgents: ['cypher', 'viper', 'omen', 'raze', 'sova'] },
+export const maps: MapData[] = [
+  {
+    id: 'ascent',
+    name: 'Ascent',
+    recommendedAgents: ['jett', 'killjoy', 'sova', 'omen', 'kayo'],
+    characteristics: ['Mid control important', 'Open areas', 'Two sites']
+  },
+  {
+    id: 'bind',
+    name: 'Bind',
+    recommendedAgents: ['brimstone', 'viper', 'raze', 'skye', 'fade'],
+    characteristics: ['No middle', 'Short lanes', 'Teleporter exits']
+  },
+  {
+    id: 'haven',
+    name: 'Haven',
+    recommendedAgents: ['jett', 'sova', 'killjoy', 'omen', 'breach'],
+    characteristics: ['Three sites', 'Mid control', 'More defensive']
+  },
+  {
+    id: 'split',
+    name: 'Split',
+    recommendedAgents: ['raze', 'viper', 'astra', 'cypher', 'skye'],
+    characteristics: ['Verticality', 'Two main corridors', 'Slow pace']
+  },
+  {
+    id: 'icebox',
+    name: 'Icebox',
+    recommendedAgents: ['viper', 'sova', 'sage', 'jett', 'killjoy'],
+    characteristics: ['Large open areas', 'Verticality', 'Snowy']
+  },
+  {
+    id: 'breeze',
+    name: 'Breeze',
+    recommendedAgents: ['viper', 'cypher', 'jett', 'sova', 'kayo'],
+    characteristics: ['Large open spaces', 'Long sightlines', 'Mid-heavy']
+  },
+  {
+    id: 'fracture',
+    name: 'Fracture',
+    recommendedAgents: ['brimstone', 'breach', 'raze', 'neon', 'killjoy'],
+    characteristics: ['Two distinct sides', 'Zip lines', 'Multi-level']
+  },
+  {
+    id: 'pearl',
+    name: 'Pearl',
+    recommendedAgents: ['astra', 'fade', 'killjoy', 'viper', 'jett'],
+    characteristics: ['Compact map', 'Horizontal layout', 'CT-side favored']
+  },
+  {
+    id: 'lotus',
+    name: 'Lotus',
+    recommendedAgents: ['omen', 'killjoy', 'raze', 'viper', 'fade'],
+    characteristics: ['Three sites', 'Destroyable walls', 'Mid control']
+  },
+  {
+    id: 'sunset',
+    name: 'Sunset',
+    recommendedAgents: ['cypher', 'viper', 'omen', 'raze', 'sova'],
+    characteristics: ['Two sites', 'Mid focus', 'Urban setting']
+  },
+  {
+    id: 'abyss',
+    name: 'Abyss',
+    recommendedAgents: ['sova', 'chamber', 'killjoy', 'vyse', 'omen'],
+    characteristics: ['Large gaps', 'Verticality', 'Open mid']
+  },
 ];
 
-export function getRecommendedAgent(level: number, mapId: string): Agent | null {
+export const roleWeights: Record<string, Record<string, number>> = {
+  Iron: { Duelist: 0.4, Sentinel: 0.3, Controller: 0.2, Initiator: 0.1 },
+  Bronze: { Duelist: 0.35, Sentinel: 0.3, Controller: 0.25, Initiator: 0.1 },
+  Silver: { Duelist: 0.3, Sentinel: 0.25, Controller: 0.3, Initiator: 0.15 },
+  Gold: { Duelist: 0.25, Sentinel: 0.25, Controller: 0.3, Initiator: 0.2 },
+  Platinum: { Duelist: 0.25, Sentinel: 0.25, Controller: 0.25, Initiator: 0.25 },
+  Diamond: { Duelist: 0.25, Sentinel: 0.25, Controller: 0.25, Initiator: 0.25 },
+  Ascendant: { Duelist: 0.2, Sentinel: 0.2, Controller: 0.3, Initiator: 0.3 },
+  Immortal: { Duelist: 0.2, Sentinel: 0.2, Controller: 0.3, Initiator: 0.3 },
+  Radiant: { Duelist: 0.2, Sentinel: 0.2, Controller: 0.3, Initiator: 0.3 },
+};
+
+export const difficultyByRank: Record<Rank, number> = {
+  Iron: 2,
+  Bronze: 2,
+  Silver: 3,
+  Gold: 3,
+  Platinum: 4,
+  Diamond: 4,
+  Ascendant: 4,
+  Immortal: 5,
+  Radiant: 5,
+};
+
+export function getRecommendedAgent(rank: Rank, mapId: string): Agent | null {
   const map = maps.find(m => m.id === mapId);
   if (!map) return null;
 
-  const suitableAgents = agents.filter(agent => {
-    const isRecommended = map.recommendedAgents.includes(agent.id);
-    let isDifficultyAppropriate = false;
-    
-    if (level < 20) isDifficultyAppropriate = agent.difficulty <= 2;
-    else if (level < 50) isDifficultyAppropriate = agent.difficulty <= 3;
-    else isDifficultyAppropriate = true;
+  const weights = roleWeights[rank];
+  const maxDiff = difficultyByRank[rank];
 
-    return isRecommended && isDifficultyAppropriate;
+  // Filter candidates by map and difficulty
+  let candidates = agents.filter(agent => {
+    const onMap = map.recommendedAgents.includes(agent.id);
+    const appropriateDifficulty = agent.difficulty <= maxDiff;
+    return onMap && appropriateDifficulty;
   });
 
-  if (suitableAgents.length > 0) {
-    return suitableAgents[Math.floor(Math.random() * suitableAgents.length)];
+  // If no candidates, fallback to map agents sorted by difficulty
+  if (candidates.length === 0) {
+    const mapAgents = agents.filter(a => map.recommendedAgents.includes(a.id));
+    candidates = mapAgents.sort((a, b) => a.difficulty - b.difficulty).slice(0, 3);
   }
 
-  return agents.find(a => map.recommendedAgents.includes(a.id)) || agents[0];
+  // Weighted random selection based on role preference for rank
+  const weightedCandidates = candidates.flatMap(agent => {
+    const roleWeight = weights[agent.role] || 0.2;
+    const times = Math.ceil(roleWeight * 10);
+    return Array(times).fill(agent);
+  });
+
+  return weightedCandidates[Math.floor(Math.random() * weightedCandidates.length)] || candidates[0] || agents[0];
 }
 
 export interface PositioningAdvice {
@@ -204,49 +510,57 @@ export interface PositioningAdvice {
 export function getPositioningAdvice(agentId: string): PositioningAdvice {
   const adviceMap: Record<string, PositioningAdvice> = {
     jett: {
-      attacking: ['Entry aggressively using Tailwind + Cloudburst.', 'Use Updraft to reach unexpected vertical off-angles.', 'Hold long lines with the Operator.'],
-      defending: ['Hold aggressive angles and dash to safety after the first shot.', 'Use verticality to surprise attackers entering the site.']
-    },
-    omen: {
-      attacking: ['Place smokes to cross chokepoints safely.', 'Use Shrouded Step to bypass defender setups.', 'Lurk and use Ultimate to put pressure on the opposite site.'],
-      defending: ['Use one-way smokes to discourage site entry.', 'Use Paranoia to stop a multi-person push in its tracks.']
-    },
-    sova: {
-      attacking: ['Drone first to clear close angles for your duelists.', 'Use Recon bolts to reveal defender positions on site.', 'Save Shock Bolts for post-plant denial.'],
-      defending: ['Use Recon bolt early in the round to identify which site the enemy is leaning towards.', 'Use Ultimate to delay the plant or defuse.']
-    },
-    sage: {
-      attacking: ['Use the Barrier Orb to safe-revive or create a safe plant spot.', 'Slow orbs should be used to stop defender retakes.'],
-      defending: ['Wall off high-traffic entries early to force enemies to rotate.', 'Hold safe positions to ensure you stay alive to provide heals.']
-    },
-    cypher: {
-      attacking: ['Use your Spycam to scout ahead without peaking.', 'Place Trapwires to watch for flankers during a site hit.'],
-      defending: ['Set up cameras and traps in varied locations so attackers can\'t predict them.', 'Stay alive to keep your utility active.']
-    },
-    viper: {
-      attacking: ['Use your Toxic Screen to split sites and minimize defender sightlines.', 'Learn molly lineups for post-plant denial.'],
-      defending: ['Maintain your smoke to deplete enemy health as they push through.', 'Use your Ultimate to secure a site lockdown or a retake.']
-    },
-    phoenix: {
-      attacking: ['Pop-flash around corners for self-entries.', 'Use Blaze to cut off sightlines and heal simultaneously.'],
-      defending: ['Use Hot Hands to stall a push in a narrow corridor.', 'Retake using Run It Back to gather information and find an opening.']
+      attacking: ['Entry first with Tailwind ready', 'Use Cloudburst for site entry', 'Hold long angles with Operator'],
+      defending: ['Hold aggressive off-angles', 'Use dash to escape trades', 'Rotate quickly with updraft']
     },
     reyna: {
-      attacking: ['Entry with Leer to blind defenders.', 'Frag out and use Dismiss to escape or Devour to get back to full health.'],
-      defending: ['Hold aggressive off-angles; if you get a kill, you can safely reposition or heal.']
+      attacking: ['Entry with Leer to blind', 'Trade your flashes aggressively', 'Dismiss after kills to escape'],
+      defending: ['Hold tight angles for picks', 'Use Devour to heal after kills', 'Empress for multi-frag']
+    },
+    sova: {
+      attacking: ['Drone first to clear corners', 'Use Recon bolt to reveal site', 'Save Shock bolt for post-plant'],
+      defending: ['Recon bolt for early info', 'Drone for retake timing', 'Hunter\'s Fury to deny plant']
+    },
+    sage: {
+      attacking: ['Wall off entry points for team', 'Slow orbs to delay rotations', 'Heal team before pushing'],
+      defending: ['Wall off choke points early', 'Slow orb at main entries', 'Resurrect key teammate late']
+    },
+    omen: {
+      attacking: ['Smoke off defender angles', 'Lurk for map control', 'Use Ult to pressure other site'],
+      defending: ['One-way smokes on chokes', 'Paranoia to delay pushes', 'Teleport for surprise flanks']
+    },
+    viper: {
+      attacking: ['Toxic Screen to split site', 'Learn molty lineups for plant', 'Use Poison Cloud for safety'],
+      defending: ['Maintain smoke uptime', 'Snake Bite for post-plant', 'Ultimate to lock site/retake']
     },
     brimstone: {
-      attacking: ['Time your smokes for a precise site execution.', 'Drop Stim Beacon as your team initiates the push.'],
-      defending: ['Use Incendiary to stop a plant or slow down a fast push.', 'Save your Ultimate for post-plant scenarios or crowded choke points.']
+      attacking: ['Smokes for site execution', 'Stim beacon for team speed', 'Incendiary for post-plant'],
+      defending: ['Smokes to delay pushes', 'Incendiary to stop rushes', 'Ult for clutch situations']
     },
-    breach: {
-      attacking: ['Flash through walls for your team as they entry.', 'Use Aftershock to clear out hidden corners or corners you can\'t reach.'],
-      defending: ['Delay the enemies with Fault Line when they try to enter the site.', 'Follow up your stun with aggressive peeks.']
+    raze: {
+      attacking: ['Blast Pack for mobility', 'Boom Bot for info', 'Showstopper for site clear'],
+      defending: ['Satchel for vertical plays', 'Paint shells for site control', 'Boombot for flank watch']
+    },
+    phoenix: {
+      attacking: ['Curveball for self-flash', 'Blaze for area denial', 'Run it Back for info'],
+      defending: ['Hot Hands to stall', 'Wall for safe positions', 'Trade aggressively']
+    },
+    kayo: {
+      attacking: ['Frag/Fragile to deny utility', 'Flashdrive for entry', 'Zero/Zero to isolate'],
+      defending: ['Flash through walls for info', 'Frag to delay pushes', 'Ult for team trades']
+    },
+    fade: {
+      attacking: ['Prowler to clear spots', 'Seize to trap enemies', 'Haunting for info'],
+      defending: ['Prowler for retake', 'Nightfall to reveal positions', 'Seize for choke denial']
+    },
+    killjoy: {
+      attacking: ['Alarm bot for flank watch', 'Nanoswarm for post-plant', 'Turret for area control'],
+      defending: ['Set up before round starts', 'Alarm bot for early alerts', 'Lockdown for site execution']
     }
   };
 
   return adviceMap[agentId] || {
-    attacking: ['Coordinate utility with your entry players.', 'Focus on trade potential.'],
-    defending: ['Play for the retake if you are outnumbered.', 'Communicate enemy rotations clearly.']
+    attacking: ['Coordinate with team', 'Use abilities for information', 'Play for trades'],
+    defending: ['Hold your angles', 'Communicate enemy positions', 'Play for the retake']
   };
 }

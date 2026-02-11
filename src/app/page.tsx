@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { agents, maps, getRecommendedAgent, getPositioningAdvice } from '@/data/valorant-data';
+import { agents, maps, getRecommendedAgent, getPositioningAdvice, ranks, type Rank } from '@/data/valorant-data';
 import { getBuyRecommendation } from '@/data/economy';
 import type { Agent } from '@/data/valorant-data';
 import type { BuyRecommendation } from '@/data/economy';
@@ -10,7 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-// --- Sub-components for cleaner code ---
+// --- Sub-components ---
 
 function TabButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
@@ -44,21 +44,12 @@ function EmptyState({ message }: { message: string }) {
   );
 }
 
-function StatBadge({ label, value }: { label: string; value: string | number }) {
-  return (
-    <div className="inline-flex flex-col items-center px-4 py-2 bg-[#1a1a24] rounded-lg">
-      <span className="text-xs text-[#9ca3af] uppercase tracking-wide">{label}</span>
-      <span className="text-lg font-semibold text-[#ece8e1]">{value}</span>
-    </div>
-  );
-}
-
 // --- Main Component ---
 
 export default function Home() {
   // State
   const [activeTab, setActiveTab] = useState<'agent' | 'economy' | 'agents'>('agent');
-  const [level, setLevel] = useState<number>(20);
+  const [selectedRank, setSelectedRank] = useState<Rank>('Gold');
   const [selectedMap, setSelectedMap] = useState<string>('');
   const [recommendedAgent, setRecommendedAgent] = useState<Agent | null>(null);
   const [positioningAdvice, setPositioningAdvice] = useState<{ attacking: string[]; defending: string[] } | null>(null);
@@ -75,7 +66,7 @@ export default function Home() {
   const handleGetRecommendation = () => {
     if (selectedMap) {
       startTransition(() => {
-        const agent = getRecommendedAgent(level, selectedMap);
+        const agent = getRecommendedAgent(selectedRank, selectedMap);
         if (agent) {
           setRecommendedAgent(agent);
           setPositioningAdvice(getPositioningAdvice(agent.id));
@@ -133,15 +124,22 @@ export default function Home() {
             <Card>
               <SectionHeader title="Find Your Agent" icon="🎯" />
               <div className="grid gap-4 sm:grid-cols-2">
-                <Input
-                  label="Your Level"
-                  type="number"
-                  min="1"
-                  max="500"
-                  value={level}
-                  onChange={(e) => setLevel(Number(e.target.value))}
-                  placeholder="e.g., 25"
-                />
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-medium text-[#9ca3af] uppercase tracking-wide">
+                    Your Rank
+                  </label>
+                  <select
+                    value={selectedRank}
+                    onChange={(e) => setSelectedRank(e.target.value as Rank)}
+                    className="w-full px-4 py-3 rounded-lg bg-[#13131a] border border-[#252530] text-[#ece8e1] focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655] transition-colors"
+                  >
+                    {ranks.map((rank) => (
+                      <option key={rank} value={rank}>
+                        {rank}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <div className="space-y-1.5">
                   <label className="block text-xs font-medium text-[#9ca3af] uppercase tracking-wide">
                     Map
@@ -212,7 +210,7 @@ export default function Home() {
                       {recommendedAgent.abilities.map((a, i) => (
                         <li key={i} className="text-sm text-[#9ca3af] flex items-center gap-2">
                           <span className="w-1 h-1 rounded-full bg-[#353545]" />
-                          {typeof a === 'string' ? a : a.name}
+                          {a.name}
                         </li>
                       ))}
                     </ul>
@@ -398,7 +396,7 @@ export default function Home() {
                     <ul className="space-y-1">
                       {selectedAgentFromGrid.abilities.map((a, i) => (
                         <li key={i} className="text-sm text-[#9ca3af]">
-                          {typeof a === 'string' ? a : `${a.name} (${a.type})`}
+                          {a.name} ({a.type})
                         </li>
                       ))}
                     </ul>
