@@ -1,67 +1,38 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 4.5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 84% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 0 84% 50%;
-    --radius: 0px; /* Valorant uses sharp edges primarily */
-  }
+@theme {
+  --color-background: #0a0a0f;
+  --color-surface: #13131a;
+  --color-surface-hover: #1a1a24;
+  --color-border: #252530;
+  --color-primary: #ff4655;
+  --color-primary-hover: #ff6b77;
+  --color-text: #ece8e1;
+  --color-text-muted: #9ca3af;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-.val-geometric {
-  background-image: 
-    linear-gradient(45deg, transparent 48%, rgba(255, 70, 85, 0.05) 50%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(255, 70, 85, 0.05) 50%, transparent 52%);
-  background-size: 60px 60px;
-}
-
-.val-panel {
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-  border-left: 2px solid #ff4655;
-}
-
-.val-btn {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.2s;
-}
-
-.val-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: 0.5s;
-}
-
-.val-btn:hover::after {
-  left: 100%;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .container-pad {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
 }

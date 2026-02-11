@@ -1,25 +1,36 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@/lib/utils"
+import { forwardRef } from "react";
+import { cn } from "@/lib/utils";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, className, ...props }, ref) => {
     return (
-      <input
-        type={type}
-        className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-          className
+      <div className="space-y-1.5">
+        {label && (
+          <label className="block text-xs font-medium text-[#9ca3af] uppercase tracking-wide">
+            {label}
+          </label>
         )}
-        ref={ref}
-        {...props}
-      />
-    )
+        <input
+          ref={ref}
+          className={cn(
+            "w-full px-4 py-3 rounded-lg bg-[#13131a] border border-[#252530]",
+            "text-[#ece8e1] placeholder:text-[#52525b]",
+            "focus:outline-none focus:border-[#ff4655] focus:ring-1 focus:ring-[#ff4655]",
+            "transition-colors duration-200",
+            "text-base",
+            className
+          )}
+          {...props}
+        />
+      </div>
+    );
   }
-)
-Input.displayName = "Input"
+);
 
-export { Input }
+Input.displayName = "Input";

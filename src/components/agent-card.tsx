@@ -1,36 +1,47 @@
-"use client"
+"use client";
 
-import { cn } from "@/lib/utils"
-import { Agent } from "@/data/valorant-data"
+import { cn } from "@/lib/utils";
+import { Agent } from "@/data/valorant-data";
 
 interface AgentCardProps {
-  agent: Agent
-  onClick?: () => void
-  selected?: boolean
+  agent: Agent;
+  onClick?: () => void;
+  selected?: boolean;
+  compact?: boolean;
 }
 
-export function AgentCard({ agent, onClick, selected = false }: AgentCardProps) {
+export function AgentCard({ agent, onClick, selected = false, compact = false }: AgentCardProps) {
   return (
-    <div
+    <button
       onClick={onClick}
       className={cn(
-        "group relative p-6 border border-slate-200/50 bg-white/5 backdrop-blur-sm rounded-xl hover:border-slate-300/70 hover:bg-white/10 transition-all duration-200 cursor-pointer h-full",
-        selected && "ring-2 ring-red-500/50 border-slate-300/70 bg-white/10"
+        "w-full text-left p-4 rounded-xl border transition-all duration-200",
+        "bg-[#13131a] border-[#252530] hover:border-[#ff4655]/50 hover:bg-[#1a1a24]",
+        selected && "border-[#ff4655] bg-[#1a1a24] ring-1 ring-[#ff4655]",
+        compact ? "min-h-[80px]" : "min-h-[140px]"
       )}
     >
-      <div className="w-16 h-16 bg-gradient-to-br from-slate-300 to-slate-400 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
-        <span className="text-lg font-semibold text-slate-900">{agent.name.slice(0,2).toUpperCase()}</span>
-      </div>
-      <h4 className="font-semibold text-slate-100 text-center mb-2 text-lg leading-tight">{agent.name}</h4>
-      <p className="text-xs text-red-400 uppercase tracking-wide font-medium text-center mb-3">{agent.role}</p>
-      <div className="flex justify-center items-center mb-4">
-        <div className="flex text-slate-400 text-xs">
-          {[...Array(5)].map((_, i) => (
-            <span key={i}>{i < agent.difficulty ? "★" : "☆"}</span>
-          ))}
+      <div className="flex items-start gap-3">
+        <div className="w-10 h-10 rounded-lg bg-[#252530] flex items-center justify-center text-lg font-bold shrink-0">
+          {agent.name.charAt(0)}
+        </div>
+        <div className="min-w-0 flex-1">
+          <h4 className="font-semibold text-[#ece8e1] truncate">{agent.name}</h4>
+          <p className="text-xs text-[#9ca3af] uppercase tracking-wide">{agent.role}</p>
+          {!compact && (
+            <div className="mt-2 flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <span
+                  key={i}
+                  className={i < agent.difficulty ? "text-[#ff4655]" : "text-[#252530]"}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-      <p className="text-xs text-slate-500 text-center line-clamp-2 leading-relaxed">{agent.description}</p>
-    </div>
-  )
+    </button>
+  );
 }
