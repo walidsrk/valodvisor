@@ -2,7 +2,15 @@
 export default {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui']
+      },
+      borderRadius: {
+        'lg': '12px',
+        'xl': '16px'
+      }
+    }
   },
   plugins: [],
 }
