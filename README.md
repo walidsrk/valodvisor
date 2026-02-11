@@ -1,6 +1,6 @@
-# Valodvisor 🎮
+# Valodvisor v2.0 🎮
 
-Your Personal Valorant Grinding Advisor - A Next.js web application to help you improve your Valorant gameplay.
+Premium Valorant advisor: smart agent picks (24+ agents, map/role weighted), positioning tips, economy buys. Next.js 16 + Tailwind v4 + shadcn/ui. Live: https://valodvisor.vercel.app
 
 ## Features
 
