@@ -15,126 +15,63 @@ export interface Map {
 }
 
 export const agents: Agent[] = [
-  {
-    id: 'jett',
-    name: 'Jett',
-    role: 'Duelist',
-    difficulty: 4,
-    description: 'Agile duelist with high mobility',
-    strengths: ['Entry fragging', 'Operator plays', 'Quick rotations'],
-    abilities: ['Cloudburst (Smoke)', 'Updraft (Jump)', 'Tailwind (Dash)', 'Blade Storm (Ultimate)']
-  },
-  {
-    id: 'sage',
-    name: 'Sage',
-    role: 'Sentinel',
-    difficulty: 2,
-    description: 'Defensive healer and wall controller',
-    strengths: ['Site defense', 'Team healing', 'Area denial'],
-    abilities: ['Barrier Orb (Wall)', 'Slow Orb', 'Healing Orb', 'Resurrection (Ultimate)']
-  },
-  {
-    id: 'phoenix',
-    name: 'Phoenix',
-    role: 'Duelist',
-    difficulty: 2,
-    description: 'Self-sufficient duelist with healing abilities',
-    strengths: ['Entry fragging', 'Self-healing', 'Area control'],
-    abilities: ['Blaze (Wall)', 'Curveball (Flash)', 'Hot Hands (Molly)', 'Run it Back (Ultimate)']
-  },
-  {
-    id: 'sova',
-    name: 'Sova',
-    role: 'Initiator',
-    difficulty: 4,
-    description: 'Information gatherer with recon abilities',
-    strengths: ['Gathering intel', 'Long-range damage', 'Post-plant lineups'],
-    abilities: ['Owl Drone', 'Shock Bolt', 'Recon Bolt', 'Hunter\'s Fury (Ultimate)']
-  },
-  {
-    id: 'brimstone',
-    name: 'Brimstone',
-    role: 'Controller',
-    difficulty: 2,
-    description: 'Smoke controller with tactical abilities',
-    strengths: ['Site execution', 'Smokes', 'Post-plant'],
-    abilities: ['Incendiary', 'Stim Beacon', 'Sky Smoke', 'Orbital Strike (Ultimate)']
-  },
-  {
-    id: 'omen',
-    name: 'Omen',
-    role: 'Controller',
-    difficulty: 3,
-    description: 'Versatile controller with teleportation',
-    strengths: ['Smokes', 'Lurking', 'Map control'],
-    abilities: ['Shrouded Step (Teleport)', 'Paranoia (Flash)', 'Dark Cover (Smoke)', 'From the Shadows (Ultimate)']
-  },
-  {
-    id: 'killjoy',
-    name: 'Killjoy',
-    role: 'Sentinel',
-    difficulty: 3,
-    description: 'Tech-based sentinel with gadgets',
-    strengths: ['Site lockdown', 'Post-plant', 'Area denial'],
-    abilities: ['Alarmbot', 'Turret', 'Nanoswarm', 'Lockdown (Ultimate)']
-  },
-  {
-    id: 'reyna',
-    name: 'Reyna',
-    role: 'Duelist',
-    difficulty: 3,
-    description: 'Aggressive duelist that feeds on kills',
-    strengths: ['Solo fragging', 'Clutching', 'Snowballing'],
-    abilities: ['Leer (Flash)', 'Devour (Heal)', 'Dismiss (Invulnerability)', 'Empress (Ultimate)']
-  }
+  { id: 'jett', name: 'Jett', role: 'Duelist', difficulty: 4, description: 'Maneuverability-focused duelist with updraft and dash for aggressive plays.', strengths: ['High mobility', 'Entry fragging', 'Operator specialist'], abilities: ['Updraft', 'Tailwind', 'Cloudburst', 'Blade Storm'] },
+  { id: 'phoenix', name: 'Phoenix', role: 'Duelist', difficulty: 3, description: 'Self-sustain duelist with fire abilities and self-revive.', strengths: ['Self-healing', 'Flash support', 'Duel potential'], abilities: ['Curveball', 'Blaze', 'Hot Hands', 'Run it Back'] },
+  { id: 'raze', name: 'Raze', role: 'Duelist', difficulty: 2, description: 'Explosive duelist with satchels and rocket launcher.', strengths: ['Area denial', 'Mobility bursts', 'High damage'], abilities: ['Blast Pack', 'Paint Shells', 'Boom Bot', 'Showstopper'] },
+  { id: 'reyna', name: 'Reyna', role: 'Duelist', difficulty: 3, description: 'Kill-dependent duelist thriving on aggressive frags.', strengths: ['Post-kill sustain', 'Clutching', 'Snowballing'], abilities: ['Leer', 'Devour', 'Dismiss', 'Empress'] },
+  { id: 'raven', name: 'Neon', role: 'Duelist', difficulty: 3, description: 'Speedster duelist with wall and sprint.', strengths: ['Fast entry', 'Wall for utility', 'High speed'], abilities: ['Fast Lane', 'Relay Bolt', 'High Gear', 'Overdrive'] },
+  { id: 'yoru', name: 'Yoru', role: 'Duelist', difficulty: 4, description: 'Illusion duelist with teleport and decoy.', strengths: ['Flank potential', 'Fakeouts', 'Escape tools'], abilities: ['Gatecrash', 'Fakeout', 'Blindside', 'Dimensional Drift'] },
+  { id: 'iso', name: 'Iso', role: 'Duelist', difficulty: 3, description: 'Bulletproof duelist with shield.', strengths: ['1v1 specialist', 'Shield duels', 'Double-tap'], abilities: ['Double Tap', 'Bulletproof', 'Undercut', 'Kill Contract'] },
+  { id: 'clove', name: 'Clove', role: 'Controller', difficulty: 3, description: 'Post-death controller with smokes.', strengths: ['Aggressive smokes', 'Revive potential', 'Immortality'], abilities: ['Ruse', 'Meddle', 'Pick-me-up', 'Not Dead Yet'] },
+  { id: 'sova', name: 'Sova', role: 'Initiator', difficulty: 4, description: 'Recon specialist with arrows and drone.', strengths: ['Information gathering', 'Lineups', 'Long-range'], abilities: ['Recon Bolt', 'Owl Drone', 'Shock Bolt', 'Hunter\'s Fury'] },
+  { id: 'sage', name: 'Sage', role: 'Sentinel', difficulty: 2, description: 'Healer and waller for team sustain.', strengths: ['Healing', 'Area control', 'Resurrection'], abilities: ['Barrier Orb', 'Healing Orb', 'Slow Orb', 'Resurrection'] },
+  { id: 'cypher', name: 'Cypher', role: 'Sentinel', difficulty: 3, description: 'Info sentinel with traps and camera.', strengths: ['Trap setups', 'Enemy tracking', 'Site lock'], abilities: ['Trapwire', 'Cyber Cage', 'Spycam', 'Neural Theft'] },
+  { id: 'killjoy', name: 'Killjoy', role: 'Sentinel', difficulty: 3, description: 'Turret and alarm sentinel.', strengths: ['Site lockdown', 'Post-plant', 'Flank watch'], abilities: ['Alarm Bot', 'Nanoswarm', 'Turret', 'Lockdown'] },
+  { id: 'chamber', name: 'Chamber', role: 'Sentinel', difficulty: 4, description: 'Sniper sentinel with tp and ult.', strengths: ['Operator plays', 'Teleport utility', 'Headhunter'], abilities: ['Headhunter', 'Rendezvous', 'Tour De Force'] },
+  { id: 'deadlock', name: 'Deadlock', role: 'Sentinel', difficulty: 3, description: 'Barrier controller sentinel.', strengths: ['Choke denial', 'Pull enemies', 'Anchor'], abilities: ['GravNet', 'Sonic Sensor', 'Barrier Mesh', 'Annihilation'] },
+  { id: 'vyse', name: 'Vyse', role: 'Sentinel', difficulty: 3, description: 'Steel wall sentinel.', strengths: ['Wall setups', 'Sheath tracking', 'Arc Rose'], abilities: ['Shear', 'Arc Rose', 'Razorvine', 'Steel Garden'] },
+  { id: 'brimstone', name: 'Brimstone', role: 'Controller', difficulty: 2, description: 'Classic smokes and stim.', strengths: ['Site smokes', 'Post-plant', 'Team buff'], abilities: ['Stim Beacon', 'Incendiary', 'Sky Smoke', 'Orbital Strike'] },
+  { id: 'omen', name: 'Omen', role: 'Controller', difficulty: 3, description: 'Shadow tp controller.', strengths: ['One-ways', 'Flanks', 'Paranoia'], abilities: ['Shrouded Step', 'Paranoia', 'Dark Cover', 'From the Shadows'] },
+  { id: 'viper', name: 'Viper', role: 'Controller', difficulty: 3, description: 'Poison cloud controller.', strengths: ['Poison denial', 'Wall control', 'Ult lockdown'], abilities: ['Snake Bite', 'Poison Cloud', 'Toxic Screen', 'Viper\'s Pit'] },
+  { id: 'astra', name: 'Astra', role: 'Controller', difficulty: 4, description: 'Global smokes astral form.', strengths: ['Global utility', 'Gravity well', 'Nova pulse'], abilities: ['Nova Pulse', 'Gravity Well', 'Nebula/Dissipate', 'Astral Form'] },
+  { id: 'harbor', name: 'Harbor', role: 'Controller', difficulty: 2, description: 'Water walls and cascades.', strengths: ['Wall replacement', 'Coversion', 'Ult bubble'], abilities: ['Cove', 'Cascade', 'High Tide', 'Reckoning'] },
+  { id: 'faide', name: 'Fade', role: 'Initiator', difficulty: 3, description: 'Fear and reveal initiator.', strengths: ['Prowlers', 'Seize reveal', 'Nightfall'], abilities: ['Prowler', 'Seize', 'Haunting', 'Nightfall'] },
+  { id: 'g ekko', name: 'Gekko', role: 'Initiator', difficulty: 2, description: 'Creature utility initiator.', strengths: ['Dizzy reveal', 'Wingman plant', 'Mosh pit'], abilities: ['Dizzy', 'Wingman', 'Mosh Pit', 'Thrash'] },
+  { id: 'kAY o', name: 'KAY/O', role: 'Initiator', difficulty: 3, description: 'Suppression and flash.', strengths: ['Null cmd suppress', 'Fragile flashes', 'Ult disable'], abilities: ['Fragile', 'Flashdrive', 'Null Cmd', 'Suppression'] },
+  { id: 'breach', name: 'Breach', role: 'Initiator', difficulty: 3, description: 'Stun and fault line.', strengths: ['Entry stuns', 'Blind through walls', 'Ult push'], abilities: ['Flashpoint', 'Fault Line', 'Aftershock', 'Rolling Thunder'] }
 ];
 
 export const maps: Map[] = [
-  {
-    id: 'haven',
-    name: 'Haven',
-    recommendedAgents: ['sova', 'omen', 'sage', 'killjoy']
-  },
-  {
-    id: 'bind',
-    name: 'Bind',
-    recommendedAgents: ['brimstone', 'sage', 'omen', 'phoenix']
-  },
-  {
-    id: 'split',
-    name: 'Split',
-    recommendedAgents: ['sage', 'sova', 'omen', 'killjoy']
-  },
-  {
-    id: 'ascent',
-    name: 'Ascent',
-    recommendedAgents: ['sova', 'killjoy', 'omen', 'sage']
-  },
-  {
-    id: 'icebox',
-    name: 'Icebox',
-    recommendedAgents: ['sage', 'sova', 'killjoy', 'omen']
-  }
+  { id: 'ascend', name: 'Ascent', recommendedAgents: ['sova', 'killjoy', 'omen', 'chamber', 'cypher'] },
+  { id: 'bind', name: 'Bind', recommendedAgents: ['brimstone', 'vipers', 'harbor', 'omen', 'sova'] },
+  { id: 'breeze', name: 'Breeze', recommendedAgents: ['sova', 'chamber', 'killjoy', 'cypher', 'fade'] },
+  { id: 'fracture', name: 'Fracture', recommendedAgents: ['sova', 'killjoy', 'cypher', 'vyse', 'fade'] },
+  { id: 'haven', name: 'Haven', recommendedAgents: ['sova', 'brimstone', 'omen', 'killjoy', 'sage'] },
+  { id: 'icebox', name: 'Icebox', recommendedAgents: ['sova', 'vipers', 'harbor', 'killjoy', 'sage'] },
+  { id: 'lotus', name: 'Lotus', recommendedAgents: ['sova', 'brimstone', 'omen', 'killjoy', 'cypher'] },
+  { id: 'pearl', name: 'Pearl', recommendedAgents: ['sova', 'vipers', 'harbor', 'chamber', 'killjoy'] },
+  { id: 'split', name: 'Split', recommendedAgents: ['sage', 'sova', 'omen', 'killjoy', 'cypher'] },
+  { id: 'sunset', name: 'Sunset', recommendedAgents: ['sova', 'killjoy', 'cypher', 'fade', 'breach'] },
+  { id: 'abyss', name: 'Abyss', recommendedAgents: ['sova', 'chamber', 'killjoy', 'vyse', 'omen'] }
 ];
 
 export function getRecommendedAgent(level: number, mapId: string): Agent | null {
   const map = maps.find(m => m.id === mapId);
   if (!map) return null;
 
-  // Filter agents by difficulty based on player level
-  const maxDifficulty = Math.min(5, Math.floor(level / 5) + 1);
-  const suitableAgents = agents.filter(agent => 
-    map.recommendedAgents.includes(agent.id) && agent.difficulty <= maxDifficulty
-  );
-
-  // Return a random suitable agent or the easiest if none match
-  if (suitableAgents.length > 0) {
-    return suitableAgents[Math.floor(Math.random() * suitableAgents.length)];
+  const roleWeights = { duelist: 0.3, initiator: 0.25, controller: 0.25, sentinel: 0.2 };
+  const maxDifficulty = Math.max(1, Math.floor(level / 20) + 1);
+  
+  let candidates = agents.filter(a => map.recommendedAgents.includes(a.id) && a.difficulty <= maxDifficulty);
+  if (candidates.length === 0) {
+    candidates = agents.filter(a => map.recommendedAgents.includes(a.id)).sort((a, b) => a.difficulty - b.difficulty).slice(0, 3);
   }
-
-  // Fallback: return the easiest agent for this map
-  const mapAgents = agents.filter(agent => map.recommendedAgents.includes(agent.id));
-  return mapAgents.sort((a, b) => a.difficulty - b.difficulty)[0] || agents[0];
+  
+  // Weighted random by role preference for map
+  const weighted = candidates.flatMap(agent => 
+    Array(Math.floor(10 / agent.difficulty) * (roleWeights[agent.role as keyof typeof roleWeights] || 0.2) * 10).fill(agent)
+  );
+  return weighted[Math.floor(Math.random() * weighted.length)] || candidates[0];
 }
 
 export interface PositioningAdvice {
