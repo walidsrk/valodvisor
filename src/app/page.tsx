@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   Accordion,
   AccordionContent,
@@ -14,19 +14,19 @@ import {
 } from "@/components/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AgentCard } from "@/components/agent-card"
-import { agents, maps, getRecommendedAgent, getPositioningAdvice } from '@/data/valorant-data';
-import { getBuyRecommendation } from '@/data/economy';
-import type { Agent } from '@/data/valorant-data';
-import type { BuyRecommendation } from '@/data/economy';
-import { useTransition } from 'react';
+import { agents, maps, getRecommendedAgent, getPositioningAdvice } from "@/data/valorant-data";
+import { getBuyRecommendation } from "@/data/economy";
+import type { Agent } from "@/data/valorant-data";
+import type { BuyRecommendation } from "@/data/economy";
+import { useTransition } from "react";
 
 export default function Home() {
   const [level, setLevel] = useState<number>(20);
-  const [selectedMap, setSelectedMap] = useState<string>('');
+  const [selectedMap, setSelectedMap] = useState<string>("");
   const [recommendedAgent, setRecommendedAgent] = useState<Agent | null>(null);
   const [positioningAdvice, setPositioningAdvice] = useState<{ attacking: string[], defending: string[] } | null>(null);
   const [selectedAgentFromGrid, setSelectedAgentFromGrid] = useState<Agent | null>(null);
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   
   const [roundNumber, setRoundNumber] = useState<number>(1);
   const [kda, setKda] = useState<number>(1.0);
@@ -242,7 +242,7 @@ export default function Home() {
                           </div>
                           <div className="space-y-2">
                             <Label className="text-slate-300 font-medium">Last Round</Label>
-                            <Select value={wonLastRound.toString()} onValueChange={(v) => setWonLastRound(v === \'true\')}>
+                            <Select value={wonLastRound.toString()} onValueChange={(v) => setWonLastRound(v === "true")}>
                               <SelectTrigger className="bg-slate-800/50 border-slate-600 text-slate-100">
                                 <SelectValue placeholder="Won/Lost" />
                               </SelectTrigger>
