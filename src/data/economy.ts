@@ -8,7 +8,7 @@ export interface BuyRecommendation {
 
 export interface PlayerStats {
   kda: number; // Kill-Death-Assist ratio
-  partyScore: number; // Total party credits
+  playerCredits: number; // Available player credits
 }
 
 export function getBuyRecommendation(
@@ -16,7 +16,7 @@ export function getBuyRecommendation(
   playerStats: PlayerStats,
   wonLastRound: boolean
 ): BuyRecommendation {
-  const { kda, partyScore } = playerStats;
+  const { kda, playerCredits } = playerStats;
 
   // Pistol round (Round 1)
   if (roundNumber === 1) {
@@ -53,7 +53,7 @@ export function getBuyRecommendation(
 
   // Round 3 (bonus round)
   if (roundNumber === 3) {
-    if (partyScore >= 3900) {
+    if (playerCredits >= 3900) {
       return {
         round: 3,
         weapons: ['Phantom (2900c)', 'Vandal (2900c)'],
@@ -73,9 +73,9 @@ export function getBuyRecommendation(
   }
 
   // Standard buy logic for later rounds
-  const canFullBuy = partyScore >= 3900;
-  const canHalfBuy = partyScore >= 2000 && partyScore < 3900;
-  const shouldSave = partyScore < 2000;
+  const canFullBuy = playerCredits >= 3900;
+  const canHalfBuy = playerCredits >= 2000 && playerCredits < 3900;
+  const shouldSave = playerCredits < 2000;
 
   // Strong performance (KDA > 1.5) - more aggressive
   if (kda > 1.5) {
@@ -155,7 +155,7 @@ export const economyGuide = {
   roundRewards: {
     killReward: 200,
     winReward: 3000,
-    lossReward: [1900, 2400, 2900], // Losing streak
+    lossReward: [1900, 2400, 2900], // Consecutive loss rewards: 1st, 2nd, 3rd+ losses
     plantReward: 300,
     defuseReward: 300
   },

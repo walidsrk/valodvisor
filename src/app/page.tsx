@@ -19,7 +19,7 @@ export default function Home() {
   
   const [roundNumber, setRoundNumber] = useState<number>(1);
   const [kda, setKda] = useState<number>(1.0);
-  const [partyScore, setPartyScore] = useState<number>(800);
+  const [playerCredits, setPlayerCredits] = useState<number>(800);
   const [wonLastRound, setWonLastRound] = useState<boolean>(false);
   const [buyRecommendation, setBuyRecommendation] = useState<BuyRecommendation | null>(null);
 
@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   const handleGetBuyAdvice = () => {
-    const recommendation = getBuyRecommendation(roundNumber, { kda, partyScore }, wonLastRound);
+    const recommendation = getBuyRecommendation(roundNumber, { kda, playerCredits }, wonLastRound);
     setBuyRecommendation(recommendation);
   };
 
@@ -222,8 +222,8 @@ export default function Home() {
                   type="number"
                   min="0"
                   max="9000"
-                  value={partyScore}
-                  onChange={(e) => setPartyScore(Number(e.target.value))}
+                  value={playerCredits}
+                  onChange={(e) => setPlayerCredits(Number(e.target.value))}
                   className="bg-white/10 border-white/20 text-white"
                 />
               </div>
